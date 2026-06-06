@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClearCart - Accessible Ecommerce</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#products">Skip to products</a>
+
+    <header class="topbar">
+      <div class="brand" aria-label="ClearCart home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>ClearCart</span>
+      </div>
+
+      <form class="search" role="search" id="searchForm">
+        <label class="sr-only" for="searchInput" data-i18n="searchLabel">Search products</label>
+        <input id="searchInput" name="search" type="search" placeholder="Search phones, bags, audio..." autocomplete="off" data-i18n-placeholder="searchPlaceholder" />
+        <button type="submit" aria-label="Search" title="Search">
+          <span aria-hidden="true">Go</span>
+        </button>
+      </form>
+
+      <div class="top-actions">
+        <label class="language">
+          <span class="sr-only" data-i18n="language">Language</span>
+          <select id="languageSelect" aria-label="Language preference">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+          </select>
+        </label>
+        <button class="cart-button" id="cartToggle" type="button" aria-expanded="false" aria-controls="cartPanel">
+          <span aria-hidden="true">Bag</span>
+          <span data-i18n="cart">Cart</span>
+          <strong id="cartCount">0</strong>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="eyebrow">Shop smarter, faster, clearer</p>
+          <h1 id="heroTitle" data-i18n="heroTitle">Find the right product without digging through endless pages.</h1>
+          <p data-i18n="heroText">Search, compare, sort, check price history, and see a better-value recommendation before you buy.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="deal-ribbon">Today top deal</div>
+          <div class="device-card hero-phone-card">
+            <img class="hero-phone-photo" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=85" alt="" />
+            <div class="price-stack">
+              <span class="price-label">PixelMate X2 5G</span>
+              <strong>Rs. 39,999</strong>
+              <span class="price-drop">Predicted Rs. 38,499 next month</span>
+            </div>
+            <div class="hero-chart">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="mini-card one"><strong>4.5</strong><span>rating</span></div>
+          <div class="mini-card two"><strong>13%</strong><span>price drop</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Product controls">
+        <div class="control-group categories" id="categoryTabs" role="tablist" aria-label="Categories">
+          <button class="active" type="button" data-category="all" data-i18n="all">All</button>
+          <button type="button" data-category="Electronics" data-i18n="electronics">Electronics</button>
+          <button type="button" data-category="Home" data-i18n="home">Home</button>
+          <button type="button" data-category="Fashion" data-i18n="fashion">Fashion</button>
+          <button type="button" data-category="Fitness" data-i18n="fitness">Fitness</button>
+        </div>
+
+        <div class="filters">
+          <label>
+            <span data-i18n="sortBy">Sort by</span>
+            <select id="sortSelect">
+              <option value="recommended" data-i18n="recommended">Recommended</option>
+              <option value="priceLow" data-i18n="priceLow">Price: Low to High</option>
+              <option value="priceHigh" data-i18n="priceHigh">Price: High to Low</option>
+              <option value="rating" data-i18n="rating">Highest Rated</option>
+              <option value="discount" data-i18n="discount">Biggest Discount</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="budget">Budget</span>
+            <select id="budgetSelect">
+              <option value="all" data-i18n="anyPrice">Any price</option>
+              <option value="under2000">Under Rs. 2,000</option>
+              <option value="under10000">Under Rs. 10,000</option>
+              <option value="under50000">Under Rs. 50,000</option>
+            </select>
+          </label>
+          <label class="toggle">
+            <input id="dealToggle" type="checkbox" />
+            <span data-i18n="dealsOnly">Deals only</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="assist-panel" aria-label="Shopping assistant">
+          <h2 data-i18n="assistantTitle">Quick shopper</h2>
+          <button type="button" data-query="best headphones under 10000" data-i18n="quickAudio">Best headphones under Rs. 10,000</button>
+          <button type="button" data-query="office chair comfort" data-i18n="quickHome">Comfortable office chair</button>
+          <button type="button" data-query="fitness tracker battery" data-i18n="quickFitness">Fitness tracker with battery life</button>
+          <div class="notice">
+            <strong data-i18n="tipTitle">Tip</strong>
+            <p data-i18n="tipText">Open any product to see price history, future prediction, and a better-value alternative.</p>
+          </div>
+        </aside>
+
+        <section id="products" class="products-region" aria-live="polite" aria-labelledby="productsTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="productsTitle" data-i18n="productsTitle">Products</h2>
+              <p id="resultSummary">Showing 12 products</p>
+            </div>
+            <button class="compare-clear" id="clearFilters" type="button" data-i18n="clearFilters">Clear filters</button>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart" hidden>
+      <div class="cart-head">
+        <h2 data-i18n="yourCart">Your cart</h2>
+        <button id="cartClose" type="button" aria-label="Close cart">x</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total">
+        <span data-i18n="total">Total</span>
+        <strong id="cartTotal">Rs. 0</strong>
+      </div>
+      <button class="checkout" type="button" data-i18n="checkout">Checkout</button>
+    </aside>
+
+    <div class="overlay" id="overlay" hidden></div>
+
+    <dialog id="productDialog" class="product-dialog">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Close details">x</button>
+      <div id="dialogContent"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
